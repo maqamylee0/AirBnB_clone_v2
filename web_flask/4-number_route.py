@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-script that starts Flask app with variable routev
+script that starts Flask web application
 '''
 from flask import Flask
 
@@ -24,6 +24,20 @@ def hbnb():
 def c_with_text(text):
     """ returns C with text formatted """
     return "C {}".format(text.replace("_", " "))
+
+
+@app.route("/python", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def python(text="is cool"):
+    """ returns python with text formatted """
+    return "Python {}".format(text.replace("_", " "))
+
+
+@app.route("/number/<int:n>", strict_slashes=False)
+def n_is_number(n):
+    """ returns a number is input is integer """
+    if isinstance(n, int):
+        return "{} is a number".format(n)
 
 
 if __name__ == '__main__':
